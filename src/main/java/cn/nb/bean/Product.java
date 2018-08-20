@@ -5,7 +5,7 @@ import java.io.Serializable;
 public class Product implements Serializable {
 
 
-    private int id;
+    private int id;//这是商品的id
     private String productName;
     private int quantity;
 
