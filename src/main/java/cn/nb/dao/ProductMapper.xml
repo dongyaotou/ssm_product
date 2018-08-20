@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--namespace务必和对应接口的全类名一致 -->
+<mapper namespace="cn.nb.dao.ProductMapper">
+    <!--查询商品表-->
+    <select id="findAllProduct"  resultType="Product">
+     select id,productName,quantity  from  product
+    </select>
+
+
+    <!--查询库存量-->
+    <select id="findQuantity"  resultType="Integer">
+     SELECT quantity from product where id=#{xxx}
+    </select>
+
+    <!--查询商品的id-->
+    <select id="findIdByProductName"  resultType="Integer">
+    SELECT  id from product where productName=#{xxx}
+    </select>
+
+    <!--更新数据库的库存量-->
+    <select id="updateQuantity"  >
+     update product SET quantity=quantity-#{quantity} WHERE id=#{id}
+
+    </select>
+
+
+
+
+
+</mapper>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--namespace务必和对应接口的全类名一致 -->
+<mapper namespace="cn.nb.dao.UserMapper">
+    <!--查询-->
+    <select id="findUserByNamePwd"  resultType="Users">
+        SELECT id,userName,password,realName from users
+        <where>
+            userName=#{name} and password=#{password}
+        </where>
+    </select>
+
+</mapper>

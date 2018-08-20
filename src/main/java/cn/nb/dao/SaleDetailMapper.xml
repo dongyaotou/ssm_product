@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--namespace务必和对应接口的全类名一致 -->
+<mapper namespace="cn.nb.dao.SaleDetailMapper">
+
+    <!--按照单笔的总价进行排序-->
+  <select id="findAllSaleDetail" resultMap="aaa">
+  select p.id,p.productName,s.price,s.quantity,s.totalPrice,s.saleDate,u.username
+     from users as u,product as p,sale as s
+
+      group by p.productName order by s.totalPrice   desc
+      limit #{pageindex},#{pagesize}
+
+  </select>
+    <!--按照销售日期排序-->
+  <select id="findAllSaleDetailByDate" resultMap="aaa">
+  select p.id,p.productName,s.price,s.quantity,s.totalPrice,s.saleDate,u.username
+     from users as u,product as p,sale as s
+
+      group by p.productName order by s.saleDate   desc
+      limit #{pageindex},#{pagesize}
+
+  </select>
+    <resultMap id="aaa" type="SaleDetail">
+
+        <id property="id" column="id"></id>
+        <result property="product" column="productName"></result>
+        <result property="price" column="price"></result>
+        <result property="quantity" column="quantity"></result>
+        <result property="totalPrice" column="totalPrice"></result>
+        <result property="date" column="saleDate"></result>
+        <result property="name" column="username"></result>
+
+
+    </resultMap>
+
+  <select id="findCount" resultType="int">
+  select count(1)
+     from sale
+
+
+  </select>
+
+</mapper>
